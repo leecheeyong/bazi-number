@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-slate-50">
     <header class="bg-white border-b border-slate-200">
       <div class="max-w-4xl mx-auto px-4 py-6">
-        <h1 class="text-3xl font-bold text-slate-900 text-center">Bazi Number</h1>
+        <h1 class="text-3xl font-bold text-slate-900 text-center">Number Gua</h1>
       </div>
     </header>
 
@@ -131,7 +131,7 @@
       <p class="mt-1">
         Project available as open source under the terms of
         <a
-          href="https://github.com/leecheeyong/bazi-number/blob/main/LICENSE"
+          href="https://github.com/leecheeyong/number-gua/blob/main/LICENSE"
           target="_blank"
           class="text-gray-700 hover:underline"
           >MIT License</a
