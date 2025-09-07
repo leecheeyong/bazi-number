@@ -172,6 +172,25 @@
                 </div>
               </div>
             </div>
+            <div class="flex flex-col items-center">
+              <div class="text-lg font-bold text-slate-700 mt-4">
+                {{
+                  sixtyFourGua[
+                    `${results.zhuGua.top.bagua}/${results.zhuGua.bottom.bagua}`
+                  ]
+                    ? sixtyFourGua[
+                        `${results.zhuGua.top.bagua}/${results.zhuGua.bottom.bagua}`
+                      ].guaName
+                    : "Unknown"
+                }}
+              </div>
+              <div
+                class="text-xs text-slate-400 mt-1 cursor-pointer select-none"
+                @click="showFullZhuGuaMeaning = !showFullZhuGuaMeaning"
+              >
+                {{ zhuGuaMeaningDisplay }}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -282,6 +301,25 @@
                     ].description
                   }}
                 </div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="text-lg font-bold text-slate-700 mt-4">
+                {{
+                  sixtyFourGua[
+                    `${results.huGua.top.bagua}/${results.huGua.bottom.bagua}`
+                  ]
+                    ? sixtyFourGua[
+                        `${results.huGua.top.bagua}/${results.huGua.bottom.bagua}`
+                      ].guaName
+                    : "Unknown"
+                }}
+              </div>
+              <div
+                class="text-xs text-slate-400 mt-1 cursor-pointer select-none"
+                @click="showFullHuGuaMeaning = !showFullHuGuaMeaning"
+              >
+                {{ huGuaMeaningDisplay }}
               </div>
             </div>
           </div>
@@ -396,6 +434,25 @@
                 </div>
               </div>
             </div>
+            <div class="flex flex-col items-center">
+              <div class="text-lg font-bold text-slate-700 mt-4">
+                {{
+                  sixtyFourGua[
+                    `${results.ziGua.top.bagua}/${results.ziGua.bottom.bagua}`
+                  ]
+                    ? sixtyFourGua[
+                        `${results.ziGua.top.bagua}/${results.ziGua.bottom.bagua}`
+                      ].guaName
+                    : "Unknown"
+                }}
+              </div>
+              <div
+                class="text-xs text-slate-400 mt-1 cursor-pointer select-none"
+                @click="showFullZiGuaMeaning = !showFullZiGuaMeaning"
+              >
+                {{ ziGuaMeaningDisplay }}
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -425,23 +482,22 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const phoneNumber = ref("");
 const results = ref(null);
 const zhuGuaTopClicked = ref(false);
 const zhuGuaBottomClicked = ref(false);
 
-const trigram = {
-  1: { symbol: "☰", bagua: "乾", element: "金", index: [1, 1, 1] },
-  2: { symbol: "☱", bagua: "兑", element: "金", index: [0, 1, 1] },
-  3: { symbol: "☲", bagua: "离", element: "火", index: [1, 0, 1] },
-  4: { symbol: "☳", bagua: "震", element: "木", index: [0, 0, 1] },
-  5: { symbol: "☴", bagua: "巽", element: "木", index: [1, 1, 0] },
-  6: { symbol: "☵", bagua: "坎", element: "水", index: [0, 1, 0] },
-  7: { symbol: "☶", bagua: "艮", element: "土", index: [1, 0, 0] },
-  8: { symbol: "☷", bagua: "坤", element: "土", index: [0, 0, 0] },
-};
+const showFullZhuGuaMeaning = ref(false);
+const showFullHuGuaMeaning = ref(false);
+const showFullZiGuaMeaning = ref(false);
+
+import {
+  trigram,
+  elementConnectionGua,
+  sixtyFourGua,
+} from "./composables/data.js";
 
 const bgColorDescription = {
   生入: "bg-green-400",
@@ -451,112 +507,35 @@ const bgColorDescription = {
   生出: "bg-red-300",
 };
 
-const elementConnectionGua = {
-  "火/金": {
-    type: "吉",
-    description: "克出",
-  },
-  "火/木": {
-    type: "吉",
-    description: "生入",
-  },
-  "水/金": {
-    type: "吉",
-    description: "生入",
-  },
-  "木/水": {
-    type: "吉",
-    description: "生入",
-  },
-  "木/土": {
-    type: "吉",
-    description: "克出",
-  },
-  "水/火": {
-    type: "吉",
-    description: "克出",
-  },
-  "金/木": {
-    type: "吉",
-    description: "克出",
-  },
-  "金/土": {
-    type: "吉",
-    description: "生入",
-  },
-  "土/火": {
-    type: "吉",
-    description: "生入",
-  },
-  "土/水": {
-    type: "吉",
-    description: "克出",
-  },
-  "金/金": {
-    type: "吉",
-    description: "比旺",
-  },
-  "火/火": {
-    type: "吉",
-    description: "比旺",
-  },
-  "木/木": {
-    type: "吉",
-    description: "比旺",
-  },
-  "水/水": {
-    type: "吉",
-    description: "比旺",
-  },
-  "土/土": {
-    type: "吉",
-    description: "比旺",
-  },
-  "金/火": {
-    type: "凶",
-    description: "克入",
-  },
-  "金/水": {
-    type: "凶",
-    description: "生出",
-  },
-  "水/木": {
-    type: "凶",
-    description: "生出",
-  },
-  "土/金": {
-    type: "凶",
-    description: "生出",
-  },
-  "土/木": {
-    type: "凶",
-    description: "克入",
-  },
-  "火/土": {
-    type: "凶",
-    description: "生出",
-  },
-  "火/水": {
-    type: "凶",
-    description: "克入",
-  },
-  "水/火": {
-    type: "凶",
-    description: "克入",
-  },
-  "水/土": {
-    type: "凶",
-    description: "克入",
-  },
-  "木/金": {
-    type: "凶",
-    description: "克入",
-  },
-  "木/火": {
-    type: "凶",
-    description: "生出",
-  },
-};
+const zhuGuaMeaningDisplay = computed(() => {
+  if (!results.value) return "";
+  const key = `${results.value.zhuGua.top.bagua}/${results.value.zhuGua.bottom.bagua}`;
+  const meaning = sixtyFourGua[key]?.meaning || "";
+  if (meaning.length > 90 && !showFullZhuGuaMeaning.value) {
+    return meaning.slice(0, 90) + "...";
+  }
+  return meaning;
+});
+
+const huGuaMeaningDisplay = computed(() => {
+  if (!results.value) return "";
+  const key = `${results.value.huGua.top.bagua}/${results.value.huGua.bottom.bagua}`;
+  const meaning = sixtyFourGua[key]?.meaning || "";
+  if (meaning.length > 90 && !showFullHuGuaMeaning.value) {
+    return meaning.slice(0, 90) + "...";
+  }
+  return meaning;
+});
+
+const ziGuaMeaningDisplay = computed(() => {
+  if (!results.value) return "";
+  const key = `${results.value.ziGua.top.bagua}/${results.value.ziGua.bottom.bagua}`;
+  const meaning = sixtyFourGua[key]?.meaning || "";
+  if (meaning.length > 90 && !showFullZiGuaMeaning.value) {
+    return meaning.slice(0, 90) + "...";
+  }
+  return meaning;
+});
 
 function arraysEqualInOrder(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
