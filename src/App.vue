@@ -35,7 +35,7 @@
           <h2 class="text-xl font-semibold text-slate-900 mb-4">主卦</h2>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-              <h3 class="text-lg font-medium text-slate-700 mb-4">上卦</h3>
+              <h3 class="text-lg font-medium text-slate-700 mb-4">上卦 ({{ results.totalNumberMod > 3 ? "用" : "体" }})</h3>
               <div class="flex items-center gap-4">
                 <div class="text-4xl">{{ results.zhuGua.top.symbol }}</div>
                 <div>
@@ -46,9 +46,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> 
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-              <h3 class="text-lg font-medium text-slate-700 mb-4">下卦</h3>
+              <h3 class="text-lg font-medium text-slate-700 mb-4">下卦 ({{ results.totalNumberMod < 4 ? "用" : "体" }})</h3>
               <div class="flex items-center gap-4">
                 <div class="text-4xl">{{ results.zhuGua.bottom.symbol }}</div>
                 <div>
@@ -61,13 +61,27 @@
               </div>
             </div>
           </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mt-4">
+            <div class="flex flex-row items-center justify-center gap-8">
+              <div class="flex flex-col items-center">
+                <div class="text-4xl">{{ results.totalNumberMod > 3 ? results.zhuGua.bottom.symbol : results.zhuGua.top.symbol }} → {{ results.totalNumberMod > 3 ? results.zhuGua.top.symbol : results.zhuGua.bottom.symbol }}</div>
+                <div class="text-xs text-slate-500 mt-1">
+                  {{ results.totalNumberMod > 3 ? results.zhuGua.bottom.element : results.zhuGua.top.element }} → {{ results.totalNumberMod > 3 ? results.zhuGua.top.element : results.zhuGua.bottom.element }}
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="text-xl font-semibold text-slate-900">{{ elementConnectionGua[`${ results.totalNumberMod > 3 ? results.zhuGua.bottom.element : results.zhuGua.top.element }/${ results.totalNumberMod > 3 ? results.zhuGua.top.element : results.zhuGua.bottom.element }`].type }}</div>
+                <div class="text-xl font-semibold text-slate-900">{{ elementConnectionGua[`${ results.totalNumberMod > 3 ? results.zhuGua.bottom.element : results.zhuGua.top.element }/${ results.totalNumberMod > 3 ? results.zhuGua.top.element : results.zhuGua.bottom.element }`].description }}</div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-slate-900 mb-4">互卦</h2>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-              <h3 class="text-lg font-medium text-slate-700 mb-4">上卦</h3>
+              <h3 class="text-lg font-medium text-slate-700 mb-4">上卦 ({{ results.totalNumberMod > 3 ? "用" : "体" }})</h3>
               <div class="flex items-center gap-4">
                 <div class="text-4xl">{{ results.huGua.top.symbol }}</div>
                 <div>
@@ -77,7 +91,7 @@
               </div>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-              <h3 class="text-lg font-medium text-slate-700 mb-4">下卦</h3>
+              <h3 class="text-lg font-medium text-slate-700 mb-4">下卦 ({{ results.totalNumberMod < 4 ? "用" : "体" }})</h3>
               <div class="flex items-center gap-4">
                 <div class="text-4xl">{{ results.huGua.bottom.symbol }}</div>
                 <div>
@@ -87,13 +101,27 @@
               </div>
             </div>
           </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mt-4">
+            <div class="flex flex-row items-center justify-center gap-8">
+              <div class="flex flex-col items-center">
+                <div class="text-4xl">{{ results.totalNumberMod > 3 ? results.huGua.bottom.symbol : results.huGua.top.symbol }} → {{ results.totalNumberMod > 3 ? results.huGua.top.symbol : results.huGua.bottom.symbol }}</div>
+                <div class="text-xs text-slate-500 mt-1">
+                  {{ results.totalNumberMod > 3 ? results.huGua.bottom.element : results.huGua.top.element }} → {{ results.totalNumberMod > 3 ? results.huGua.top.element : results.huGua.bottom.element }}
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="text-xl font-semibold text-slate-900">{{ elementConnectionGua[`${ results.totalNumberMod > 3 ? results.huGua.bottom.element : results.huGua.top.element }/${ results.totalNumberMod > 3 ? results.huGua.top.element : results.huGua.bottom.element }`].type }}</div>
+                <div class="text-xl font-semibold text-slate-900">{{ elementConnectionGua[`${ results.totalNumberMod > 3 ? results.huGua.bottom.element : results.huGua.top.element }/${ results.totalNumberMod > 3 ? results.huGua.top.element : results.huGua.bottom.element }`].description }}</div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2 class="text-xl font-semibold text-slate-900 mb-4">之卦</h2>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-              <h3 class="text-lg font-medium text-slate-700 mb-4">上卦</h3>
+              <h3 class="text-lg font-medium text-slate-700 mb-4">上卦 ({{ results.totalNumberMod > 3 ? "用" : "体" }})</h3>
               <div class="flex items-center gap-4">
                 <div class="text-4xl">{{ results.ziGua.top.symbol }}</div>
                 <div>
@@ -103,13 +131,27 @@
               </div>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-              <h3 class="text-lg font-medium text-slate-700 mb-4">下卦</h3>
+              <h3 class="text-lg font-medium text-slate-700 mb-4">下卦 ({{ results.totalNumberMod < 4 ? "用" : "体" }})</h3>
               <div class="flex items-center gap-4">
                 <div class="text-4xl">{{ results.ziGua.bottom.symbol }}</div>
                 <div>
                   <div class="text-xl font-semibold text-slate-900">{{ results.ziGua.bottom.bagua }}</div>
                   <div class="text-sm text-slate-600">{{ results.ziGua.bottom.element }}</div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mt-4">
+            <div class="flex flex-row items-center justify-center gap-8">
+              <div class="flex flex-col items-center">
+                <div class="text-4xl">{{ results.totalNumberMod > 3 ? results.ziGua.bottom.symbol : results.ziGua.top.symbol }} → {{ results.totalNumberMod > 3 ? results.ziGua.top.symbol : results.ziGua.bottom.symbol }}</div>
+                <div class="text-xs text-slate-500 mt-1">
+                  {{ results.totalNumberMod > 3 ? results.ziGua.bottom.element : results.ziGua.top.element }} → {{ results.totalNumberMod > 3 ? results.ziGua.top.element : results.ziGua.bottom.element }}
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="text-xl font-semibold text-slate-900">{{ elementConnectionGua[`${ results.totalNumberMod > 3 ? results.ziGua.bottom.element : results.ziGua.top.element }/${ results.totalNumberMod > 3 ? results.ziGua.top.element : results.ziGua.bottom.element }`].type }}</div>
+                <div class="text-xl font-semibold text-slate-900">{{ elementConnectionGua[`${ results.totalNumberMod > 3 ? results.ziGua.bottom.element : results.ziGua.top.element }/${ results.totalNumberMod > 3 ? results.ziGua.top.element : results.ziGua.bottom.element }`].description }}</div>
               </div>
             </div>
           </div>
@@ -157,6 +199,114 @@ const trigram = {
   "8": { "symbol": "☷", "bagua": "坤", "element": "土", "index": [0, 0, 0] }
 }
 
+const elementConnectionGua = {
+  "火/金": {
+    type: "吉",
+    description: "克出"
+  }, 
+  "火/木": {
+    type: "吉",
+    description: "生入"
+  },
+  "水/金": {
+    type: "吉",
+    description: "生入"
+  },
+  "木/水": {
+    type: "吉",
+    description: "生入"
+  },
+  "木/土": {
+    type: "吉",
+    description: "克出"
+  }, 
+  "水/火": {
+    type: "吉",
+    description: "克出"
+  }, 
+  "金/木": {
+    type: "吉",
+    description: "克出"
+  }, 
+  "金/土": {
+    type: "吉",
+    description: "生入"
+  },
+  "土/火": {
+    type: "吉",
+    description: "生入"
+  }, 
+  "土/水": {
+    type: "吉",
+    description: "克出"
+  }, 
+  "金/金": {
+    type: "吉",
+    description: "比旺"
+  },
+  "火/火": {
+    type: "吉",
+    description: "比旺"
+  }, 
+  "木/木": {
+    type: "吉",
+    description: "比旺"
+  }, 
+  "水/水": {
+    type: "吉",
+    description: "比旺"
+  },
+  "土/土": {
+    type: "吉",
+    description: "比旺"
+  },
+  "金/火": {
+    type: "凶",
+    description: "克入"
+  }, 
+  "金/水": {
+    type: "凶",
+    description: "生出"
+  }, 
+  "水/木": {
+    type: "凶",
+    description: "生出"
+  }, 
+  "土/金": {
+    type: "凶",
+    description: "生出"
+  },
+  "土/木": {
+    type: "凶",
+    description: "克入"
+  }, 
+  "火/土": {
+    type: "凶",
+    description: "生出"
+  }, 
+  "火/水": {
+    type: "凶",
+    description: "克入"
+  },
+  "水/火": {
+    type: "凶",
+    description: "克入"
+  }, 
+  "水/土": {
+    type: "凶",
+    description: "克入"
+  },
+  "木/金": {
+    type: "凶",
+    description: "克入"
+  },
+  "木/火": {
+    type: "凶",
+    description: "生出"
+  }, 
+}
+
+
 function arraysEqualInOrder(arr1, arr2) {
   if (arr1.length !== arr2.length) return false
   for (let i = 0; i < arr1.length; i++) {
@@ -188,8 +338,8 @@ function calculateGua() {
     part1 = processedPhone.slice(0, length / 2)
     part2 = processedPhone.slice(length / 2)
   } else {
-    part1 = processedPhone.slice(0, Math.ceil(length / 2))
-    part2 = processedPhone.slice(Math.ceil(length / 2))
+    part1 = processedPhone.slice(0, -Math.round(length / 2))
+    part2 = processedPhone.slice(Math.floor(length / 2))
   }
 
   const zhuGuaTop = {
@@ -230,10 +380,13 @@ function calculateGua() {
     arraysEqualInOrder(gua.index, ziGuaIndex.slice(3, 6))
   )
 
+
+
   results.value = {
     zhuGua: { top: zhuGuaTop, bottom: zhuGuaBottom },
     huGua: { top: huGuaTop, bottom: huGuaBottom },
-    ziGua: { top: ziGuaTop, bottom: ziGuaBottom }
+    ziGua: { top: ziGuaTop, bottom: ziGuaBottom },
+    totalNumberMod
   }
 }
 

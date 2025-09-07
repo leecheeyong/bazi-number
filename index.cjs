@@ -1,5 +1,5 @@
 const trigram = require('./trigram.json')
-var phone = "63362528"
+var phone = ""
 var length = phone.length
 
 var part1;
@@ -9,9 +9,11 @@ if(length % 2 == 0){
   part1 = phone.slice(0,-(length/2))
   part2 = phone.slice(length/2)
 }else {
-  part1 = phone.slice(0,-Math.round((length/2)-1))
-  part2 = phone.slice(Math.floor((length/2)+1))
+  part1 = phone.slice(0,-Math.round(length/2))
+  part2 = phone.slice(Math.floor(length/2))
 }
+
+console.log(part1, part2)
 
 var zhuGuaTop = {
   sumOfDigits: part1.split("").reduce((partialSum, a) => Number(partialSum) + Number(a), 0),
