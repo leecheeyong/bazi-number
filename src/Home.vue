@@ -715,7 +715,7 @@ const zhuGuaTopClicked = ref(false);
 const zhuGuaBottomClicked = ref(false);
 
 const isDark = ref(true);
-const showFullZhuGuaMeaning = ref(false);
+const showFullZuhuGaMeaning = ref(false);
 const showFullHuGuaMeaning = ref(false);
 const showFullZiGuaMeaning = ref(false);
 
